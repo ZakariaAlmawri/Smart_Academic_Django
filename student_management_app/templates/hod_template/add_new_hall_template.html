@@ -1,0 +1,71 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Add Hall
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Add Hall </h3>
+                </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/add_hall_save" method="post">
+                {% csrf_token %}
+                <div class="card-body"  >
+                    <div class="form-group" >
+                        <label > Hall Name </label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter hall name "  autocomplete="off">
+                  </div>
+                 
+                    <div class="form-group" >
+                    <label> Capacity </label>
+                    <input type="text" class="form-control" placeholder=" Enter Capacity" name="capacity">
+                  </div>
+                  <div class="form-group">
+                    <label>Is a projector available in the hall?
+                      <br>
+                      <label for="projector_yes">Yes</label>
+                      <input type="radio" id="projector_yes" name="projector_available" value="True" required>
+                      <br>
+                      <label for="projector_no">No</label>
+                      <input type="radio" id="projector_no" name="projector_available" value="False" required>
+                  </label>
+                  </div>
+                      <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Add Hall </button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+    {% endblock main_content %}
+
